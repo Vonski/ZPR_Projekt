@@ -248,3 +248,9 @@ _Pvt_Extensions
 *.exe
 *.out
 *.app
+
+#Scons tmp
+*.dblite
+
+#Custom:
+*resources.cpp

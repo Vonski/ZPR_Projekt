@@ -246,6 +246,8 @@ _Pvt_Extensions
 
 # Executables
 *.exe
+!bin/
+!bin/packfolder.exe
 *.out
 *.app
 

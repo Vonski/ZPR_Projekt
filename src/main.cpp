@@ -1,10 +1,17 @@
 #include "sciter-x-window.hpp"
 #include "resources.cpp"
 
+///
+/// \brief Frame class
+///
+/// Additional description
 class frame : public sciter::window {
 public:
-  frame() : window(SW_TITLEBAR | SW_RESIZEABLE | SW_CONTROLS | SW_MAIN | SW_ENABLE_DEBUG) {}
+	///
+	/// A constructor
+  frame() : window(SW_TITLEBAR | SW_RESIZEABLE | SW_CONTROLS | SW_MAIN | SW_ENABLE_DEBUG) {}	///
 };
+
 
 
 int uimain(std::function<int()> run) {

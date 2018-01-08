@@ -28,5 +28,5 @@ int uimain(std::function<int()> run) {
   pwin->expand();
 
   return run();
-
+  
 }

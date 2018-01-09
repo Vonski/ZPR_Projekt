@@ -2,14 +2,20 @@ from subprocess import call
 import glob
 import os
 
+
+src_files = glob.glob('../src/*.cpp') + glob.glob('../tests/*.cpp')
+
 if os.name!="posix":
 	testEnv = Environment(CCFLAGS=['/EHsc', '/D_WINDLL'], LINKFLAGS=['/subsystem:console'], CPPPATH=['../include/boost/include/boost-1_66/', '../src/'], LIBPATH='../include/boost/lib/')
+	
+	src_files.remove('../src\\main.cpp')
+	#src_files.remove('../src\\WindowsCollector.cpp')
+
 else:
 	lib = File('../include/boost/lib/libboost_unit_test_framework.a')
 	testEnv = Environment(CCFLAGS=['-pthread'], CPPPATH=['../include/boost/include/boost-1_66/', '../src/'], LIBPATH=['../include/boost/lib/'], LIBS=[lib, '-ldl'])
 
-src_files = glob.glob('../src/*.cpp') + glob.glob('../tests/*.cpp')
-src_files.remove('../src/main.cpp')
-src_files.remove('../src/WindowsCollector.cpp')
+	src_files.remove('../src/main.cpp')
+	src_files.remove('../src/WindowsCollector.cpp')
 name = 'test'
 target2 = testEnv.Program(name, src_files)

@@ -1,6 +1,6 @@
 #define _WIN32_DCOM
 #pragma comment(lib, "wbemuuid.lib")
-#include "WindowsCollector.h"
+#include "WindowsCollector.hpp"
 
 using namespace std;
 

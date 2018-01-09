@@ -8,10 +8,11 @@
 #include <codecvt>
 #include <vector>
 #include <algorithm>
+#include "Collector.hpp"
 
 using namespace std;
 
-class WindowsCollector {
+class WindowsCollector : public Collector {
 public:
 	WindowsCollector();
 	~WindowsCollector();

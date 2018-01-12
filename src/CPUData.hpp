@@ -6,7 +6,7 @@ using namespace std;
 
 struct CPUData : DeviceData {
 
-	virtual void getData();
+	//virtual void getData();
 
 	int cpu_percentage_usage;
 	string cpu_manufacturer;

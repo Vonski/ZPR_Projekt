@@ -6,7 +6,7 @@ using namespace std;
 
 struct RAMData : DeviceData {
 
-	virtual void getData();
+	//virtual void getData();
 
 	int ram_percentage_usage;
 	float ram_size;

@@ -6,7 +6,7 @@ using namespace std;
 
 struct DiskData : DeviceData {
 
-	void getData();
+	//void getData();
 
 	string disk_model;
 	int disk_partitions_number;

@@ -8,12 +8,17 @@
 #include <codecvt>
 #include <vector>
 #include <algorithm>
+#include "Collector.hpp"
+#include "CPUData.hpp"
+#include "DiskData.hpp"
+#include "RAMData.hpp"
 
 using namespace std;
 
-class WindowsCollector {
+class WindowsCollector : public Collector {
 public:
 	WindowsCollector();
+	WindowsCollector(CPUData* c, RAMData* r, DiskData* d);
 	~WindowsCollector();
 
 	//CPU
@@ -50,6 +55,8 @@ public:
 	int getRAMSystemCodeSize();
 	int getRAMUsedBySystemDriverSize();
 
+	virtual void fillModelWithData();
+
 private:
 
 	int connectToWMINamespace();
@@ -62,4 +69,8 @@ private:
 
 	IWbemServices *pSvc;
 	IWbemLocator *pLoc;
+	CPUData* cpu_data;
+	RAMData* ram_data;
+	DiskData* disk_data;
+
 };

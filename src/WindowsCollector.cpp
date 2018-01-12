@@ -1,6 +1,6 @@
 #define _WIN32_DCOM
 #pragma comment(lib, "wbemuuid.lib")
-#include "WindowsCollector.h"
+#include "WindowsCollector.hpp"
 
 using namespace std;
 
@@ -19,6 +19,12 @@ WindowsCollector::~WindowsCollector() {
 WindowsCollector::WindowsCollector() {
 	pSvc = NULL;
 	pLoc = NULL;
+}
+
+WindowsCollector::WindowsCollector(CPUData* c, RAMData* r, DiskData* d) {
+	cpu_data = c;
+	ram_data = r;
+	disk_data = d;
 }
 
 int WindowsCollector::connectToWMINamespace() {
@@ -522,6 +528,39 @@ int WindowsCollector::getRAMUsedBySystemDriverSize() {
 	long long size_l = stoll(size);
 	float size_f = (float)size_l / MB;
 	return size_f;
+}
+
+void WindowsCollector::fillModelWithData() {
+	cpu_data->cpu_percentage_usage = getCPUPercentageUsage();
+	cpu_data->cpu_manufacturer =getCpuManufacturer();
+	cpu_data->cpu_max_clock_speed = getCPUMaxClockSpeed();
+	cpu_data->cpu_number_of_cores =getCPUNumberOfCores();
+	cpu_data->cpu_number_of_logical_processors =getCPUNumberOfLogicalProcessors();
+	cpu_data->cpu_name = getCPUName();
+	cpu_data->cpu_current_clock_speed = getCPUCurrentClockSpeed();
+	cpu_data->cpu_current_voltage =getCPUCurrentVoltage();
+	cpu_data->cpu_load_percentage = getCPULoadPercentage();
+
+	ram_data->ram_percentage_usage =getRAMPercentageUsage();
+	ram_data->ram_size =getRAMSize();
+	ram_data->free_ram_size =getFreeRamSize();
+	ram_data->current_cache_size =getCurrentCacheSize();
+	ram_data->ram_page_faults_per_sec = getRAMPageFaultsPerSec();
+	ram_data->ram_clock_speed =getRAMClockSpeed();
+	ram_data->ram_model = getRAMModel();
+	ram_data->ram_cache_faults_per_sec = getRAMCacheFaultsPerSec();
+	ram_data->ram_system_code_size = getRAMSystemCodeSize();
+	ram_data->ram_used_by_system_drivers_size = getRAMUsedBySystemDriverSize();
+
+	disk_data->disk_model = getDiskModel();
+	disk_data->disk_partitions_number =getDiskPartitionsNumber();
+	disk_data->disk_size =getDiskSize();
+	disk_data->disk_free_space =getDiskFreeSpace();
+	disk_data->disk_current_queue_length = getDiskCurrentQueueLength();
+	disk_data->disk_avg_queue_length = getDiskAvgQueueLength();
+	disk_data->disk_read_kbytes_per_sec =getDiskReadKBytesPerSec();
+	disk_data->disk_write_kbytes_per_sec = getDiskWriteKBytesPerSec();
+	disk_data->disk_percentage_usage = getDiskPercentageUsage();
 }
 
 

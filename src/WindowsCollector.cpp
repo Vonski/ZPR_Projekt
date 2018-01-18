@@ -1,6 +1,7 @@
 #define _WIN32_DCOM
 #pragma comment(lib, "wbemuuid.lib")
 #include "WindowsCollector.hpp"
+#include "CollectorUtilities.hpp"
 
 using namespace std;
 
@@ -8,8 +9,7 @@ const int GB = 1073741824;
 const int MB = 1048576;
 const int KB = 1024;
 
-wstring s2ws(const std::string& str);
-string ws2s(const std::wstring& wstr);
+
 
 
 WindowsCollector::~WindowsCollector() {
@@ -43,26 +43,26 @@ int WindowsCollector::connectToWMINamespace() {
 	// Step 2: --------------------------------------------------
 	// Set general COM security levels --------------------------
 
-	hres = CoInitializeSecurity(
-		NULL,
-		-1,                          // COM authentication
-		NULL,                        // Authentication services
-		NULL,                        // Reserved
-		RPC_C_AUTHN_LEVEL_DEFAULT,   // Default authentication 
-		RPC_C_IMP_LEVEL_IMPERSONATE, // Default Impersonation  
-		NULL,                        // Authentication info
-		EOAC_NONE,                   // Additional capabilities 
-		NULL                         // Reserved
-	);
+	//hres = CoInitializeSecurity(
+	//	NULL,
+	//	-1,                          // COM authentication
+	//	NULL,                        // Authentication services
+	//	NULL,                        // Reserved
+	//	RPC_C_AUTHN_LEVEL_DEFAULT,   // Default authentication 
+	//	RPC_C_IMP_LEVEL_IMPERSONATE, // Default Impersonation  
+	//	NULL,                        // Authentication info
+	//	EOAC_NONE,                   // Additional capabilities 
+	//	NULL                         // Reserved
+	//);
 
 
-	if (FAILED(hres))
-	{
-		cout << "Failed to initialize security. Error code = 0x"
-			<< hex << hres << endl;
-		CoUninitialize();
-		return 1;                    // Program has failed.
-	}
+	//if (FAILED(hres))
+	//{
+	//	cout << "Failed to initialize security. Error code = 0x"
+	//		<< hex << hres << endl;
+	//	CoUninitialize();
+	//	return 1;                    // Program has failed.
+	//}
 
 	// Step 3: ---------------------------------------------------
 	// Obtain the initial locator to WMI -------------------------
@@ -397,7 +397,6 @@ float  WindowsCollector::getDiskSize() {
 	string size;
 	if (getWMIDataStr("Win32_DiskDrive", "Size", size))
 		size = "0";
-	//long size_l = stol(size);
 	float size_f = stof(size) / GB;
 	return size_f;
 }
@@ -563,20 +562,3 @@ void WindowsCollector::fillModelWithData() {
 	disk_data->disk_percentage_usage = getDiskPercentageUsage();
 }
 
-
-
-wstring s2ws(const std::string& str)
-{
-	using convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
-
-	return converterX.from_bytes(str);
-}
-
-string ws2s(const std::wstring& wstr)
-{
-	using convert_typeX = std::codecvt_utf8<wchar_t>;
-	std::wstring_convert<convert_typeX, wchar_t> converterX;
-
-	return converterX.to_bytes(wstr);
-}

@@ -1,14 +1,17 @@
 #pragma once
 #include "DeviceData.hpp"
-#include <boost/archive/text_oarchive.hpp>
-#include <boost/archive/text_iarchive.hpp>
+//#include <boost/archive/text_oarchive.hpp>
+//#include <boost/archive/text_iarchive.hpp>
 #include <string>
+#include "ObservationSubject.hpp"
 
 using namespace std;
 
-struct CPUData : DeviceData {
+struct CPUData : DeviceData, public ObservationSubject {
 
 	//virtual void getData();
+	CPUData() {}
+	~CPUData() {}
 
 	int cpu_percentage_usage;
 	string cpu_manufacturer;
@@ -33,4 +36,8 @@ struct CPUData : DeviceData {
 		ar & cpu_current_voltage;
 		ar & cpu_load_percentage;
 	}
+
+
+
+
 };

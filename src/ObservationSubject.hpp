@@ -4,9 +4,10 @@
 
 
 class ObservationSubject {
+public:
 	void add(Observer* o) { observers.push_back(o); }
 	void notify();
-	virtual ~ObservationSubject() = 0;
+	//virtual ~ObservationSubject() {};
 private:
 	std::vector<Observer*> observers;
 };

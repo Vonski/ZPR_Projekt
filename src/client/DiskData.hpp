@@ -1,7 +1,7 @@
 #pragma once
-#include "DeviceData.hpp"
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include "DeviceData.hpp"
 #include <string>
 
 using namespace std;
@@ -32,6 +32,22 @@ struct DiskData : DeviceData {
 		ar & disk_read_kbytes_per_sec;
 		ar & disk_write_kbytes_per_sec;
 		ar & disk_percentage_usage;
+	}
+
+	string printToString()
+	{
+		stringstream ss;
+		ss << "Disk" << endl;
+		ss << "model: " << disk_model << endl;
+		ss << "partitions number: " << disk_partitions_number << endl;
+		ss << "size: " << disk_size << "GB" << endl;
+		ss << "free space: " << disk_free_space << "GB" << endl;
+		ss << "current queue length: " << disk_current_queue_length << endl;
+		ss << "average queue length: " << disk_avg_queue_length << endl;
+		ss << "write speed: " << disk_write_kbytes_per_sec << "KB" << endl;
+		ss << "read speed: " << disk_read_kbytes_per_sec << "KB" << endl;
+		ss << "usage: " << disk_percentage_usage << "%" << endl;
+		return ss.str();
 	}
 
 };

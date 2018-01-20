@@ -1,4 +1,5 @@
 #pragma once
+#include <boost/thread/mutex.hpp>
 #include <Windows.h>
 #include <string>
 #include <iostream>

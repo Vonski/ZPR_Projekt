@@ -1,7 +1,7 @@
 #pragma once
-#include "DeviceData.hpp"
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include "DeviceData.hpp"
 #include <string>
 
 using namespace std;

@@ -1,7 +1,7 @@
 #pragma once
-#include "DeviceData.hpp"
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
+#include "DeviceData.hpp"
 #include <string>
 
 using namespace std;
@@ -32,5 +32,21 @@ struct CPUData : DeviceData {
 		ar & cpu_current_clock_speed;
 		ar & cpu_current_voltage;
 		ar & cpu_load_percentage;
+	}
+
+	string printToString()
+	{
+		stringstream ss;
+		ss << "CPU" << endl;
+		ss << "manufacturer: " << cpu_manufacturer << endl;
+		ss << "Name: " << cpu_name << endl;
+		ss << "load: " << cpu_load_percentage << "%" << endl;
+		ss << "usage: " << cpu_percentage_usage << "%" << endl;
+		ss << "max clock speed: " << cpu_max_clock_speed << endl;
+		ss << "current clock speed: " << cpu_current_clock_speed << endl;
+		ss << "current voltage: " << cpu_current_voltage << endl;
+		ss << "number of cores: " << cpu_number_of_cores << endl;
+		ss << "number of logical processors: " << cpu_number_of_logical_processors << endl;
+		return ss.str();
 	}
 };

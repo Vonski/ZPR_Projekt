@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>ZPRMonitor</title>
+        <link rel="stylesheet" href="style.css">
+		<script type="text/tiscript">
+			const DEFAULT_WIDTH = 900dip;
+			const DEFAULT_HEIGHT = 400dip;
+			var (sx,sy,sw,sh) = View.screenBox(0,#workarea,#rectw);
+			
+			var w = self.toPixels(DEFAULT_WIDTH, #width);
+			var h = self.toPixels(DEFAULT_HEIGHT, #height);
+			
+			view.move( sx + (sw - w) / 2, sy + (sh - h) / 2, w,h, true );
+			
+			$(p#disk_usage).text = "50%";
+			namespace Accounts 
+			{
+			  function test( val ) {
+				 $(p#test).text = val;
+			  }
+			}
+		</script>
+    </head>
+    <body>
+		<a #back_link href="./main.htm">
+		<img #back src="left_arrow.png">
+		</a>	
+		<div #disk_detailed_left>			
+			<p #disk_usage>blank</p>	
+			<h2>DISK</h2>			
+		</div>
+		
+		<div #disk_detailed>
+			<table #disk_table>
+				<tr>
+					<td>Size:</td>
+					<td #disk_size>blank</td>					
+				</tr>
+				<tr>
+					<td>Free space:</td>
+					<td #disk_free_space>blank</td>
+				</tr>
+				<tr>
+					<td>Partitions number:</td>
+					<td #disk_partitions_nr>blank</td>
+				</tr>
+				<tr>
+					<td>Write speed:</td>
+					<td #disk_write_speed>blank</td>
+				</tr>
+				<tr>
+					<td>Read speed:</td>
+					<td #disk_read_speed>blank</td>
+				</tr>
+				<tr>
+					<td>Current queue length:</td>
+					<td #disk_current_queue_length>blank</td>
+				</tr>
+		</div>
+    </body>
+</html>

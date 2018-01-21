@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>ZPRMonitor</title>
+        <link rel="stylesheet" href="style.css">
+		<script type="text/tiscript">
+			const DEFAULT_WIDTH = 900dip;
+			const DEFAULT_HEIGHT = 400dip;
+			var (sx,sy,sw,sh) = View.screenBox(0,#workarea,#rectw);
+			
+			var w = self.toPixels(DEFAULT_WIDTH, #width);
+			var h = self.toPixels(DEFAULT_HEIGHT, #height);
+			
+			view.move( sx + (sw - w) / 2, sy + (sh - h) / 2, w,h, true );
+			
+			$(p#ram_usage).text = "50%";
+			namespace Accounts 
+			{
+			  function test( val ) {
+				 $(p#test).text = val;
+			  }
+			}
+		</script>
+    </head>
+    <body>
+		<a #back_link href="./main.htm">
+		<img #back src="left_arrow.png">
+		</a>	
+		<div #ram_detailed_left>			
+			<p #ram_usage>blank</p>	
+			<h2>RAM</h2>			
+		</div>
+		
+		<div #ram_detailed>
+			<table #ram_table>
+				<tr>
+					<td>Total RAM size:</td>
+					<td #ram_size>blank</td>					
+				</tr>
+				<tr>
+					<td>Free RAM size:</td>
+					<td #ram_free_size>blank</td>
+				</tr>
+				<tr>
+					<td>Cache size:</td>
+					<td #ram_cache_size>blank</td>
+				</tr>
+				<tr>
+					<td>Clock speed:</td>
+					<td #ram_clock_speed>blank</td>
+				</tr>
+				<tr>
+					<td>Cache faults per second:</td>
+					<td #ram_cache_faults_per_sec>blank</td>
+				</tr>
+				<tr>
+					<td>Page faults per second:</td>
+					<td #ram_page_faults_per_sec>blank</td>
+				</tr>
+		</div>
+    </body>
+</html>

@@ -3,10 +3,11 @@
 #include <boost/archive/text_iarchive.hpp>
 #include "DeviceData.hpp"
 #include <string>
+#include "ObservationSubject.hpp"
 
 using namespace std;
 
-struct CPUData : DeviceData {
+struct CPUData : DeviceData, ObservationSubject{
 
 	//virtual void getData();
 

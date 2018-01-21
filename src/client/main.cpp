@@ -2,6 +2,7 @@
 #include "DataReceiver.hpp"
 #include "sciter-x-window.hpp"
 #include "resources.cpp"
+#include "NotificationsController.hpp"
 
 ///
 /// \brief Frame class
@@ -23,6 +24,10 @@ int uimain(std::function<int()> run) {
 	CPUData cpu1;
 	DiskData hdd;
 	RAMData ram;
+	NotificationsController notifications_controller;
+	notifications_controller.setTwitterNotifier(new TwitterNotifier());
+	notifications_controller.setCPUData(&cpu1);
+	cpu1.add(&notifications_controller);
 	DataReceiver dr("127.0.0.1", 8001, cpu1, hdd, ram, console);
 	dr.tryToConnect();
 	boost::thread thrd1(ref(dr));

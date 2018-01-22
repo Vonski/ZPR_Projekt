@@ -12,12 +12,21 @@
 			
 			view.move( sx + (sw - w) / 2, sy + (sh - h) / 2, w,h, true );
 			
-			$(p#ram_usage).text = "50%";
-			namespace Accounts 
+			$(p#ram_usage).text = "0%";
+			namespace View 
 			{
-			  function test( val ) {
-				 $(p#test).text = val;
-			  }
+				function setRAMDetails1(usage, total_size, free_size, cache_size){
+					$(p#ram_usage).text = usage + "%";
+					$(p#ram_size).text = total_size + "GB";
+					$(p#ram_free_size).text = free_size + "MB";
+					$(p#ram_cache_size).text = cache_size + "MB";
+					
+				}	
+				function setRAMDetails2(clock_speed, cache_faults, page_faults){
+					$(p#ram_clock_speed).text = clock_speed + "MHz";
+					$(p#ram_cache_faults_per_sec).text = cache_faults;
+					$(p#ram_page_faults_per_sec).text = page_faults;
+				}
 			}
 		</script>
     </head>

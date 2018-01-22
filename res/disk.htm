@@ -12,11 +12,19 @@
 			
 			view.move( sx + (sw - w) / 2, sy + (sh - h) / 2, w,h, true );
 			
-			$(p#disk_usage).text = "50%";
+			$(p#disk_usage).text = "0%";
 			namespace Accounts 
 			{
-			  function test( val ) {
-				 $(p#test).text = val;
+			  function setDiskDetails1( usage, size, free_space, partitions ) {
+				 $(p#disk_usage).text = usage + "%";
+				 $(p#disk_size).text = size + "GB";
+				 $(p#disk_free_space).text = free_space + "GB";
+				 $(p#disk_partitions_nr).text = partitions;
+			  }
+			  function setDiskDetails2( write_speed, read_speed, cur_queue ) {
+				$(p#disk_write_speed).text = write_speed + "KB/s";
+				 $(p#disk_read_speed).text = read_speed + "KB/s;
+				 $(p#disk_current_queue_length).text = cur_queue;
 			  }
 			}
 		</script>

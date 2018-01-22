@@ -1,6 +1,3 @@
-// WindowsCollector.cpp : Defines the entry point for the console application.
-//
-
 #include <boost/thread/thread.hpp>
 #include <iostream>
 #include "DataSender.hpp"
@@ -10,20 +7,19 @@ using namespace std;
 
 int main()
 {
-	CPUData cpu1;
-	DiskData disk;
-	RAMData ram;
-	DataSender ds(cpu1, disk, ram);
+	shared_ptr<CPUData> cpu = make_shared<CPUData>();
+	shared_ptr<DiskData> disk = make_shared<DiskData>();
+	shared_ptr<RAMData> ram = make_shared<RAMData>();
+	DataSender ds(cpu, disk, ram);
 	
-	WindowsCollector w(&cpu1, &ram, &disk);
-	w.fillModelWithData();
+	WindowsCollector collector(cpu, ram, disk);
+	collector.fillModelWithData();
 	boost::thread thrd1(ref(ds));
 
 	for (;;)
 	{
-		w.fillModelWithData();
+		collector.fillModelWithData();
 	}
-
 
 	thrd1.join();
 

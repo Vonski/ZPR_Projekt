@@ -4,6 +4,5 @@
 #include <boost/thread/mutex.hpp>
 
 struct DeviceData {
-	//virtual void getData() = 0;
 	boost::mutex mutex;
 };

@@ -1,14 +1,13 @@
 #pragma once
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
-#include "DeviceData.hpp"
 #include <string>
+#include "DeviceData.hpp"
+
 
 using namespace std;
 
 struct CPUData : DeviceData {
-
-	//virtual void getData();
 
 	int cpu_percentage_usage;
 	string cpu_manufacturer;

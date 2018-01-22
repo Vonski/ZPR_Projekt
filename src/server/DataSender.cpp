@@ -1,8 +1,5 @@
 #include "DataSender.hpp"
 
-
-
-
 DataSender::~DataSender()
 {
 }

@@ -9,9 +9,6 @@ const int GB = 1073741824;
 const int MB = 1048576;
 const int KB = 1024;
 
-
-
-
 WindowsCollector::~WindowsCollector() {
 	disconnectFromWMINamespace();
 }
@@ -21,18 +18,17 @@ WindowsCollector::WindowsCollector() {
 	pLoc = NULL;
 }
 
-WindowsCollector::WindowsCollector(CPUData* c, RAMData* r, DiskData* d) {
+WindowsCollector::WindowsCollector(shared_ptr<CPUData> cpu,shared_ptr<RAMData> ram, shared_ptr<DiskData> disk) {
 	pSvc = NULL;
 	pLoc = NULL;
-	cpu_data = c;
-	ram_data = r;
-	disk_data = d;
+	cpu_data = cpu;
+	ram_data = ram;
+	disk_data = disk;
 }
 
 int WindowsCollector::connectToWMINamespace() {
 	HRESULT hres;
-	// Step 1: --------------------------------------------------
-	// Initialize COM. ------------------------------------------
+		// Initialize COM. ------------------------------------------
 
 	hres = CoInitializeEx(0, COINIT_MULTITHREADED);
 	if (FAILED(hres))
@@ -41,34 +37,8 @@ int WindowsCollector::connectToWMINamespace() {
 			<< hex << hres << endl;
 		return 1;                  // Program has failed.
 	}
-
-	// Step 2: --------------------------------------------------
-	// Set general COM security levels --------------------------
-
-	//hres = CoInitializeSecurity(
-	//	NULL,
-	//	-1,                          // COM authentication
-	//	NULL,                        // Authentication services
-	//	NULL,                        // Reserved
-	//	RPC_C_AUTHN_LEVEL_DEFAULT,   // Default authentication 
-	//	RPC_C_IMP_LEVEL_IMPERSONATE, // Default Impersonation  
-	//	NULL,                        // Authentication info
-	//	EOAC_NONE,                   // Additional capabilities 
-	//	NULL                         // Reserved
-	//);
-
-
-	//if (FAILED(hres))
-	//{
-	//	cout << "Failed to initialize security. Error code = 0x"
-	//		<< hex << hres << endl;
-	//	CoUninitialize();
-	//	return 1;                    // Program has failed.
-	//}
-
-	// Step 3: ---------------------------------------------------
+		
 	// Obtain the initial locator to WMI -------------------------
-
 	pLoc = NULL;
 
 	hres = CoCreateInstance(
@@ -86,9 +56,7 @@ int WindowsCollector::connectToWMINamespace() {
 		return 1;                 // Program has failed.
 	}
 
-	// Step 4: -----------------------------------------------------
 	// Connect to WMI through the IWbemLocator::ConnectServer method
-
 	pSvc = NULL;
 
 	// Connect to the root\cimv2 namespace with
@@ -116,8 +84,6 @@ int WindowsCollector::connectToWMINamespace() {
 
 	cout << "Connected to ROOT\\CIMV2 WMI namespace" << endl;
 
-
-	// Step 5: --------------------------------------------------
 	// Set security levels on the proxy -------------------------
 
 	hres = CoSetProxyBlanket(

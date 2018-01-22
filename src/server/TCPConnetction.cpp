@@ -6,7 +6,7 @@ using namespace boost::asio::ip;
 int counter = 0;
 int tmp = 0;
 
-TCPConnection::pointer TCPConnection::create(boost::asio::io_service & io_service, CPUData & cpuu, DiskData & diskk, RAMData& ramm)
+TCPConnection::pointer TCPConnection::create(boost::asio::io_service& io_service, shared_ptr<CPUData> cpuu, shared_ptr<DiskData> diskk, shared_ptr<RAMData> ramm)
 {
 	return pointer(new TCPConnection(io_service,cpuu,diskk,ramm));
 }
@@ -28,42 +28,42 @@ void TCPConnection::start()
 		boost::bind(&TCPConnection::handle_write, shared_from_this(), boost::asio::placeholders::error, boost::asio::placeholders::bytes_transferred));
 }
 
-std::string TCPConnection::objectToData(CPUData& cpu1)
+std::string TCPConnection::objectToData(shared_ptr<CPUData> cpu)
 {
 	std::stringstream oss;
 	{
-		boost::mutex::scoped_lock(cpu1.mutex);
+		boost::mutex::scoped_lock(cpu->mutex);
 		boost::archive::text_oarchive oa(oss);
-		oa << cpu1;
+		oa << *cpu;
 	}
 	return oss.str();
 }
 
-std::string TCPConnection::objectToData(DiskData & disk)
+std::string TCPConnection::objectToData(shared_ptr<DiskData> disk)
 {
 	std::stringstream oss;
 	{
-		boost::mutex::scoped_lock(disk.mutex);
+		boost::mutex::scoped_lock(disk->mutex);
 		boost::archive::text_oarchive oa(oss);
-		oa << disk;
+		oa << *disk;
 	}
 	return oss.str();
 }
 
-std::string TCPConnection::objectToData(RAMData & ram)
+std::string TCPConnection::objectToData(shared_ptr<RAMData> ram)
 {
 	std::stringstream oss;
 	{
-		boost::mutex::scoped_lock(ram.mutex);
+		boost::mutex::scoped_lock(ram->mutex);
 		boost::archive::text_oarchive oa(oss);
-		oa << ram;
+		oa << *ram;
 	}
 	return oss.str();
 }
 
 std::string TCPConnection::prepareConcatenatedMessage()
 {
-	std::string cpudata = objectToData(cpu1);
+	std::string cpudata = objectToData(cpu);
 	std::string diskdata = objectToData(disk);
 	std::string ramdata = objectToData(ram);
 	std::cout << ramdata << std::endl;
@@ -78,10 +78,10 @@ std::string TCPConnection::prepareConcatenatedMessage()
 
 void TCPConnection::printCPU()
 {
-	std::cout << "Sending to 1: " << cpu1.cpu_current_clock_speed << " " << cpu1.cpu_current_voltage << " " << cpu1.cpu_manufacturer << " " << ram.ram_model << std::endl;
+	std::cout << "Sending to 1: " << cpu->cpu_current_clock_speed << " " << cpu->cpu_current_voltage << " " << cpu->cpu_manufacturer << " " << ram->ram_model << std::endl;
 }
 
-TCPConnection::TCPConnection(boost::asio::io_service & io_service, CPUData & cpuu, DiskData & diskk, RAMData& ramm) : socket_(tcp::socket(io_service)), cpu1(cpuu), disk(diskk), ram(ramm)
+TCPConnection::TCPConnection(boost::asio::io_service& io_service, shared_ptr<CPUData> cpuu, shared_ptr<DiskData> diskk, shared_ptr<RAMData> ramm) : socket_(tcp::socket(io_service)), cpu(cpuu), disk(diskk), ram(ramm)
 {
 }
 

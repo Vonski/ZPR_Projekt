@@ -1,14 +1,12 @@
 #pragma once
 #include <boost/archive/text_oarchive.hpp>
 #include <boost/archive/text_iarchive.hpp>
-#include "DeviceData.hpp"
 #include <string>
+#include "DeviceData.hpp"
 
 using namespace std;
 
 struct DiskData : DeviceData {
-
-	//void getData();
 
 	string disk_model;
 	int disk_partitions_number;

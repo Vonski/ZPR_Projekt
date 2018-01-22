@@ -28,6 +28,11 @@
 					$(p#ram_page_faults_per_sec).text = page_faults;
 				}
 			}
+			
+			event click $(a)
+			{
+				view.getSomeData(0);
+			}
 		</script>
     </head>
     <body>
@@ -43,27 +48,27 @@
 			<table #ram_table>
 				<tr>
 					<td>Total RAM size:</td>
-					<td #ram_size>blank</td>					
+					<td><p #ram_size>blank</p></td>					
 				</tr>
 				<tr>
 					<td>Free RAM size:</td>
-					<td #ram_free_size>blank</td>
+					<td><p #ram_free_size>blank</p></td>
 				</tr>
 				<tr>
 					<td>Cache size:</td>
-					<td #ram_cache_size>blank</td>
+					<td><p #ram_cache_size>blank</p></td>
 				</tr>
 				<tr>
 					<td>Clock speed:</td>
-					<td #ram_clock_speed>blank</td>
+					<td><p #ram_clock_speed>blank</p></td>
 				</tr>
 				<tr>
 					<td>Cache faults per second:</td>
-					<td #ram_cache_faults_per_sec>blank</td>
+					<td><p #ram_cache_faults_per_sec>blank</p></td>
 				</tr>
 				<tr>
 					<td>Page faults per second:</td>
-					<td #ram_page_faults_per_sec>blank</td>
+					<td><p #ram_page_faults_per_sec>blank</p></td>
 				</tr>
 		</div>
     </body>

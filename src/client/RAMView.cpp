@@ -6,6 +6,7 @@ RAMView::~RAMView()
 
 void RAMView::update()
 {
+	boost::mutex::scoped_lock(ram->mutex);
 	pwin->call_function("View.setRAMDetails1", sciter::value(ram->ram_percentage_usage),
 		sciter::value(ram->ram_size),
 		sciter::value(ram->free_ram_size),

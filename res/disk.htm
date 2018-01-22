@@ -23,9 +23,14 @@
 			  }
 			  function setDiskDetails2( write_speed, read_speed, cur_queue ) {
 				$(p#disk_write_speed).text = write_speed + "KB/s";
-				 $(p#disk_read_speed).text = read_speed + "KB/s;
+				 $(p#disk_read_speed).text = read_speed + "KB/s";
 				 $(p#disk_current_queue_length).text = cur_queue;
 			  }
+			}
+			
+			event click $(a)
+			{
+				view.getSomeData(0);
 			}
 		</script>
     </head>
@@ -42,27 +47,27 @@
 			<table #disk_table>
 				<tr>
 					<td>Size:</td>
-					<td #disk_size>blank</td>					
+					<td><p #disk_size>blank</p></td>					
 				</tr>
 				<tr>
 					<td>Free space:</td>
-					<td #disk_free_space>blank</td>
+					<td><p #disk_free_space>blank</p></td>
 				</tr>
 				<tr>
 					<td>Partitions number:</td>
-					<td #disk_partitions_nr>blank</td>
+					<td><p #disk_partitions_nr>blank</p></td>
 				</tr>
 				<tr>
 					<td>Write speed:</td>
-					<td #disk_write_speed>blank</td>
+					<td><p #disk_write_speed>blank</p></td>
 				</tr>
 				<tr>
 					<td>Read speed:</td>
-					<td #disk_read_speed>blank</td>
+					<td><p #disk_read_speed>blank</p></td>
 				</tr>
 				<tr>
 					<td>Current queue length:</td>
-					<td #disk_current_queue_length>blank</td>
+					<td><p #disk_current_queue_length>blank</p></td>
 				</tr>
 		</div>
     </body>

@@ -1,4 +1,5 @@
 #pragma once
+#include <boost/thread/mutex.hpp>
 #include <memory>
 #include <sciter-x-window.hpp>
 #include "Observer.hpp"

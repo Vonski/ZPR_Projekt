@@ -6,6 +6,7 @@ DiskView::~DiskView()
 
 void DiskView::update()
 {
+	boost::mutex::scoped_lock(disk->mutex);
 	pwin->call_function("View.setDiskDetails1", sciter::value(disk->disk_percentage_usage),
 		sciter::value(disk->disk_size),
 		sciter::value(disk->disk_free_space),

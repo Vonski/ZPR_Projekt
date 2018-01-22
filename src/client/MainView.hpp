@@ -1,4 +1,5 @@
 #pragma once
+#include <boost/thread/mutex.hpp>
 #include <memory>
 #include <sciter-x-window.hpp>
 #include "Observer.hpp"
@@ -12,6 +13,7 @@ public:
 	MainView(sciter::window* pwindow, std::shared_ptr<CPUData> cpuu, std::shared_ptr<DiskData> diskk, std::shared_ptr<RAMData> ramm) : pwin(pwindow), cpu1(cpuu), disk(diskk), ram(ramm) {}
 	~MainView();
 	virtual void update();
+	void tmp();
 
 private:
 	sciter::window* pwin;

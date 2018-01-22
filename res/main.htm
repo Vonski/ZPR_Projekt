@@ -27,22 +27,35 @@
 				 $(p#ram_usage).text = val + "%";
 			  }
 			}
+			
+			event click $(a#acpu)
+			{
+				view.getSomeData(1);
+			}
+			event click $(a#adisk)
+			{
+				view.getSomeData(2);
+			}
+			event click $(a#aram)
+			{
+				view.getSomeData(3);
+			}
 		</script>
     </head>
     <body>
-		<a href="./cpu.htm">
+		<a href="./cpu.htm" #acpu>
 		<div #cpu>			
 			<p #cpu_usage>blank</p>
 			<h2>CPU</h2>
 		</div>
 		</a>
-		<a href="./ram.htm">
+		<a href="./ram.htm" #aram>
 		<div #ram>			
 			<p #ram_usage>blank</p>
 			<h2>RAM</h2>
 		</div>
 		</a>
-		<a href="./disk.htm">
+		<a href="./disk.htm" #adisk>
 		<div #disk>			
 			<p #disk_usage>blank</p>
 			<h2>DISK</h2>

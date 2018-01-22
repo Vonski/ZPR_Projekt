@@ -56,11 +56,13 @@ void DataReceiver::operator()()
 		std::string msg = receiveData(10);
 		unpackMessage(msg);
 		cpu2->notify();
+		disk->notify();
+		ram->notify();
 		sciterPrintData();
 		if (checkForErrors())
 			break;
 		
-		Sleep(2000);
+		Sleep(1000);
 
 		sendPing();
 		if (checkForErrors())

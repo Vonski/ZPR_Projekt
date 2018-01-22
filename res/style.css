@@ -91,5 +91,6 @@ table{
 td{
 	padding:10px;
 }
-
-	
+#cpu_table #cpu_name {
+	font-size: 10px;
+}

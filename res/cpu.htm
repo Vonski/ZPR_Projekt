@@ -24,9 +24,14 @@
 			  }
 			  function setCPUDetails2( max_clock_speed, cur_clock_speed, cur_voltage ){
 				$(p#cpu_max_clock_speed).text = max_clock_speed + "GHz";
-				 $(p#cpu_current_clock_speed).text = cur_clock_speed + "GHz;
+				 $(p#cpu_current_clock_speed).text = cur_clock_speed + "GHz";
 				 $(p#cpu_current_voltage).text = cur_voltage + "V";
 			  }
+			}
+			
+			event click $(a)
+			{
+				view.getSomeData(0);
 			}
 		</script>
     </head>
@@ -43,27 +48,27 @@
 			<table #cpu_table>
 				<tr>
 					<td>Name:</td>
-					<td #cpu_name>blank</td>					
+					<td><p #cpu_name>blank</p></td>					
 				</tr>
 				<tr>
 					<td>Number of cores:</td>
-					<td #cpu_number_of_cores>blank</td>
+					<td><p  #cpu_number_of_cores>blank</p></td>
 				</tr>
 				<tr>
 					<td>Number of logical processors:</td>
-					<td #cpu_number_of_logical_processors>blank</td>
+					<td><p #cpu_number_of_logical_processors>blank</p></td>
 				</tr>
 				<tr>
 					<td>Max clock speed:</td>
-					<td #cpu_max_clock_speed>blank</td>
+					<td><p #cpu_max_clock_speed>blank</p></td>
 				</tr>
 				<tr>
 					<td>Current clock speed:</td>
-					<td #cpu_current_clock_speed>blank</td>
+					<td><p #cpu_current_clock_speed>blank</p></td>
 				</tr>
 				<tr>
 					<td>Current voltage:</td>
-					<td #cpu_current_voltage>blank</td>
+					<td><p #cpu_current_voltage>blank</p></td>
 				</tr>
 		</div>
     </body>

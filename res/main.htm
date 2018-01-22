@@ -1,13 +1,46 @@
 <html>
     <head>
-        <title>Test</title>
-        <style></style>
-        <script type="text/tiscript"></script>
+        <title>ZPRMonitor</title>
+        <link rel="stylesheet" href="style.css">
+		<script type="text/tiscript">
+			const DEFAULT_WIDTH = 900dip;
+			const DEFAULT_HEIGHT = 400dip;
+			var (sx,sy,sw,sh) = View.screenBox(0,#workarea,#rectw);
+			
+			var w = self.toPixels(DEFAULT_WIDTH, #width);
+			var h = self.toPixels(DEFAULT_HEIGHT, #height);
+			
+			view.move( sx + (sw - w) / 2, sy + (sh - h) / 2, w,h, true );
+			
+			$(p#cpu_usage).text = "50%";
+			$(p#ram_usage).text = "50%";
+			$(p#disk_usage).text = "50%";
+			namespace Accounts 
+			{
+			  function test( val ) {
+				 $(p#test).text = val;
+			  }
+			}
+		</script>
     </head>
-    <body style="background: transparent;">
-
-      <h2>Hello World!<h2>
-	  <div style="width:400px; height: 300px; background-color: black; border-radius: 10px;"> hello</div>
-
+    <body>
+		<a href="./cpu.htm">
+		<div #cpu>			
+			<p #cpu_usage>blank</p>
+			<h2>CPU</h2>
+		</div>
+		</a>
+		<a href="./ram.htm">
+		<div #ram>			
+			<p #ram_usage>blank</p>
+			<h2>RAM</h2>
+		</div>
+		</a>
+		<a href="./disk.htm">
+		<div #disk>			
+			<p #disk_usage>blank</p>
+			<h2>DISK</h2>
+		</div>
+		</a>
     </body>
 </html>

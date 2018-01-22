@@ -55,6 +55,7 @@ void DataReceiver::operator()()
 	{
 		std::string msg = receiveData(10);
 		unpackMessage(msg);
+		cpu2.notify();
 		sciterPrintData();
 		if (checkForErrors())
 			break;

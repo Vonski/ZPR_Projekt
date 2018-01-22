@@ -1,0 +1,95 @@
+html, html *{
+	margin: 0;
+	color: #fff;
+}
+html  { background:transparent; }
+body div#cpu, body div#ram, body div#disk, body div#cpu_detailed_left, body div#ram_detailed_left, body div#disk_detailed_left{
+	float: left;
+	width: 300px;
+	height: 400px;
+}
+body div#cpu_detailed, body div#ram_detailed, body div#disk_detailed{
+	float:left;
+	width: 600px;
+	height: 400px;
+}
+body div#cpu, body div#cpu_detailed, body div#cpu_detailed_left{
+	background: #1f7583;
+}
+body div#cpu:hover{
+	opacity: 0.95;
+}
+body div#ram, body div#ram_detailed, body div#ram_detailed_left{
+	background: #3c4e78;
+}
+body div#ram:hover{
+	opacity: 0.95;
+}
+body div#disk, body div#disk_detailed, body div#disk_detailed_left{
+	background: #674a7d;
+}
+body div#disk:hover{
+	opacity: 0.95;
+}
+body div#cpu_detailed{
+	outline: 2px solid #3c4e78;
+}
+body div#ram_detailed{
+	outline: 2px solid #674a7d;
+}
+body div#disk_detailed{
+	outline: 2px solid #1f7583;
+}
+p#cpu_usage, p#ram_usage, p#disk_usage {
+	margin-top: 100px;
+	width: 100%;
+	text-align: center;
+    font-family: "Helvetica Light" Helvetica;
+	font-weight: 200;
+	font-size: 80px;	
+}
+p#cpu_usage_detailed, p#ram_usage_detailed, p#disk_usage_detailed {
+	margin-top: 20px;
+	width: 100%;
+	text-align: center;
+    font-family: "Helvetica Light" Helvetica;
+	font-weight: 200;
+	font-size: 80px;
+}
+
+h2{
+	margin-top: 50px;
+	width: 100%;
+	text-align: center;
+	font-family: "Helvetica Light" Helvetica;
+	font-weight: 200;
+	font-size: 60px;	
+}
+a{
+	display: block;
+	margin: 0;
+	text-decoration: none;
+}
+a#back_link{
+	position: fixed;
+	top: 20px;
+	left: 20px;
+}
+img#back {	
+	opacity: 0.8;
+}
+img#back:hover {
+	opacity: 1;
+}
+table{
+	margin-top: 55px;
+	margin-left: 40px;
+	font-family: "Helvetica Light" Helvetica;
+	font-size: 20px;
+	
+}
+td{
+	padding:10px;
+}
+
+	

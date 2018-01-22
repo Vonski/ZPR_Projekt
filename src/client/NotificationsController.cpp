@@ -19,10 +19,10 @@ void NotificationsController::makeNotification() {
 	}
 }
 
-void NotificationsController::setCPUData(CPUData* cpu_data) {
+void NotificationsController::setCPUData(std::shared_ptr<CPUData> cpu_data) {
 	this->cpu_data = cpu_data;
 }
 
-void NotificationsController::setTwitterNotifier(TwitterNotifier* twitter_notifier) {
-	this->twitter_notifier = twitter_notifier;
+void NotificationsController::setTwitterNotifier(std::unique_ptr<TwitterNotifier> twitter_notifier) {
+	this->twitter_notifier = move(twitter_notifier);
 }

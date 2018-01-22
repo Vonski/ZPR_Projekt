@@ -3,7 +3,7 @@
 using namespace boost::asio;
 using namespace boost::asio::ip;
 
-DataReceiver::DataReceiver(std::string ip_address, int port_number, CPUData & cpuu, DiskData & diskk, RAMData& ramm, sciter::debug_output_console& consolee) : socket(tcp::socket(service)), cpu2(cpuu), disk(diskk), ram(ramm), console(consolee)
+DataReceiver::DataReceiver(std::string ip_address, int port_number, shared_ptr<CPUData> cpuu, shared_ptr<DiskData> diskk, shared_ptr<RAMData> ramm, sciter::debug_output_console& consolee) : socket(tcp::socket(service)), cpu2(cpuu), disk(diskk), ram(ramm), console(consolee)
 {
 	ep = tcp::endpoint(address::from_string(ip_address), port_number);
 	error = error::host_not_found;
@@ -55,7 +55,7 @@ void DataReceiver::operator()()
 	{
 		std::string msg = receiveData(10);
 		unpackMessage(msg);
-		cpu2.notify();
+		cpu2->notify();
 		sciterPrintData();
 		if (checkForErrors())
 			break;
@@ -84,23 +84,23 @@ void DataReceiver::dataToObjects(std::string cmsg, std::string dmsg, std::string
 {
 	std::stringstream ifs(cmsg);
 	{
-		boost::mutex::scoped_lock(cpu2.mutex);
+		boost::mutex::scoped_lock(cpu2->mutex);
 		boost::archive::text_iarchive ia(ifs);
-		ia >> cpu2;
+		ia >> *cpu2;
 	}
 
 	ifs = std::stringstream(dmsg);
 	{
-		boost::mutex::scoped_lock(disk.mutex);
+		boost::mutex::scoped_lock(disk->mutex);
 		boost::archive::text_iarchive ia(ifs);
-		ia >> disk;
+		ia >> *disk;
 	}
 
 	ifs = std::stringstream(rmsg);
 	{
-		boost::mutex::scoped_lock(ram.mutex);
+		boost::mutex::scoped_lock(ram->mutex);
 		boost::archive::text_iarchive ia(ifs);
-		ia >> ram;
+		ia >> *ram;
 	}
 }
 
@@ -126,14 +126,14 @@ int DataReceiver::intFromMessageToString(std::string str)
 
 void DataReceiver::printCPU()
 {
-	std::cout << cpu2.cpu_current_clock_speed << " " << cpu2.cpu_current_voltage << " " << cpu2.cpu_manufacturer << std::endl;
-	std::cout << disk.disk_free_space << std::endl;
-	std::cout << ram.free_ram_size << std::endl;
+	std::cout << cpu2->cpu_current_clock_speed << " " << cpu2->cpu_current_voltage << " " << cpu2->cpu_manufacturer << std::endl;
+	std::cout << disk->disk_free_space << std::endl;
+	std::cout << ram->free_ram_size << std::endl;
 }
 
 void DataReceiver::sciterPrintData()
 {
-	string allData = cpu2.printToString() + "\n" + disk.printToString() + "\n" + ram.printToString() + "\n";
+	string allData = cpu2->printToString() + "\n" + disk->printToString() + "\n" + ram->printToString() + "\n";
 	console.print(allData.c_str());
 }
 

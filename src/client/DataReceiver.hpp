@@ -21,7 +21,7 @@
 class DataReceiver
 {
 public:
-	DataReceiver(std::string ip_address, int port_number, CPUData & cpuu, DiskData & diskk, RAMData& ramm, sciter::debug_output_console& console);
+	DataReceiver(std::string ip_address, int port_number, shared_ptr<CPUData> cpuu,	shared_ptr<DiskData> diskk,	shared_ptr<RAMData> ramm, sciter::debug_output_console& console);
 	~DataReceiver();
 	void tryToConnect();
 	int checkForErrors();
@@ -41,9 +41,9 @@ private:
 	boost::asio::io_service service;
 	boost::asio::ip::tcp::socket socket;
 	boost::system::error_code error;
-	CPUData& cpu2;
-	DiskData& disk;
-	RAMData& ram;
+	shared_ptr<CPUData> cpu2;
+	shared_ptr<DiskData> disk;
+	shared_ptr<RAMData> ram;
 	sciter::debug_output_console& console;
 };
 

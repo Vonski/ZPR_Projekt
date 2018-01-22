@@ -7,7 +7,7 @@
 
 using namespace std;
 
-struct CPUData : DeviceData, ObservationSubject{
+struct CPUData : DeviceData {
 
 	//virtual void getData();
 

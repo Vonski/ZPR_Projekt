@@ -15,7 +15,7 @@
 			$(p#cpu_usage).text = "0%";
 			namespace View 
 			{
-			  function test( usage, name, nr_of_cores, nr_of_logical_processors, max_clock_speed, cur_clock_speed, cur_voltage ) {
+			  function setCPUDetails( usage, name, nr_of_cores, nr_of_logical_processors, max_clock_speed, cur_clock_speed, cur_voltage ) {
 			  	$(p#cpu_usage).text = usage;
 				 $(p#cpu_name).text = name;
 				 $(p#cpu_number_of_cores).text = name;

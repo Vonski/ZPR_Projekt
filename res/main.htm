@@ -15,10 +15,16 @@
 			$(p#cpu_usage).text = "50%";
 			$(p#ram_usage).text = "50%";
 			$(p#disk_usage).text = "50%";
-			namespace Accounts 
+			namespace View 
 			{
 			  function cpuUpdate( val ) {
 				 $(p#cpu_usage).text = val + "%";
+			  }
+			  function diskUpdate( val ) {
+				 $(p#disk_usage).text = val + "%";
+			  }
+			  function ramUpdate( val ) {
+				 $(p#ram_usage).text = val + "%";
 			  }
 			}
 		</script>

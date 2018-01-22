@@ -18,12 +18,11 @@
 			  function setCPUDetails( usage, name, nr_of_cores, nr_of_logical_processors, max_clock_speed, cur_clock_speed, cur_voltage ) {
 			  	$(p#cpu_usage).text = usage;
 				 $(p#cpu_name).text = name;
-				 $(p#cpu_number_of_cores).text = name;
-				 $(p#cpu_number_of_logical_processors).text = name;
-				 $(p#cpu_max_clock_speed).text = name;
-				 $(p#cpu_current_clock_speed).text = name;
-				 $(p#cpu_current_voltage).text = name;
-
+				 $(p#cpu_number_of_cores).text = nr_of_cores;
+				 $(p#cpu_number_of_logical_processors).text = nr_of_logical_processors;
+				 $(p#cpu_max_clock_speed).text = max_clock_speed;
+				 $(p#cpu_current_clock_speed).text = cur_clock_speed;
+				 $(p#cpu_current_voltage).text = cur_voltage;
 			  }
 			}
 		</script>

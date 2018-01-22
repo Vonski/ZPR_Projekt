@@ -9,12 +9,14 @@
 class MainView : public Observer
 {
 public:
-	MainView(sciter::window* pwindow, std::shared_ptr<CPUData> cpuu) : pwin(pwindow), cpu1(cpuu) {}
+	MainView(sciter::window* pwindow, std::shared_ptr<CPUData> cpuu, std::shared_ptr<DiskData> diskk, std::shared_ptr<RAMData> ramm) : pwin(pwindow), cpu1(cpuu), disk(diskk), ram(ramm) {}
 	~MainView();
 	virtual void update();
 
 private:
 	sciter::window* pwin;
 	std::shared_ptr<CPUData> cpu1;
+	std::shared_ptr<DiskData> disk;
+	std::shared_ptr<RAMData> ram;
 };
 

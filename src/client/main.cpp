@@ -43,7 +43,7 @@ int uimain(std::function<int()> run) {
 
 	// note: this:://app URL is dedicated to the sciter::archive content associated with the application
 	pwin->load(WSTR("this://app/main.htm"));
-	std::shared_ptr<MainView> mv = make_shared<MainView>(static_cast<sciter::window*>(pwin), cpu1);
+	std::shared_ptr<MainView> mv = make_shared<MainView>(static_cast<sciter::window*>(pwin), cpu1, disk, ram);
 	cpu1->addObserver(mv);
 	
 	pwin->expand();

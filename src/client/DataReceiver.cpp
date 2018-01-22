@@ -60,7 +60,7 @@ void DataReceiver::operator()()
 		if (checkForErrors())
 			break;
 		
-		Sleep(10000);
+		Sleep(2000);
 
 		sendPing();
 		if (checkForErrors())

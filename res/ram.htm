@@ -15,7 +15,7 @@
 			$(p#ram_usage).text = "0%";
 			namespace View 
 			{
-				function setRAMDetails1(usage, total_size, free_size, cache_size, clock_speed, cache_faults, page_faults){
+				function setRAMDetails1(usage, total_size, free_size, cache_size){
 					$(p#ram_usage).text = usage + "%";
 					$(p#ram_size).text = total_size + "GB";
 					$(p#ram_free_size).text = free_size + "MB";

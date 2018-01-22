@@ -1,12 +1,11 @@
 #pragma once
-
 #include <boost/asio/io_service.hpp>
 #include "TCPConnetction.hpp"
 
 class TCPServer
 {
 public:
-	TCPServer(boost::asio::io_service& io_service, CPUData & cpuu, DiskData & diskk, RAMData& ramm);
+	TCPServer(boost::asio::io_service& io_service, shared_ptr<CPUData> cpuu, shared_ptr<DiskData> diskk, shared_ptr<RAMData> ramm);
 
 private:
 	void start_accept();
@@ -15,8 +14,8 @@ private:
 
 	boost::asio::io_service& io_service_;
 	boost::asio::ip::tcp::acceptor acceptor_;
-	CPUData& cpu1;
-	DiskData& disk;
-	RAMData& ram;
+	shared_ptr<CPUData> cpu;
+	shared_ptr<RAMData> ram;
+	shared_ptr<DiskData> disk;
 };
 

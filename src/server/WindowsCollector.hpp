@@ -19,8 +19,12 @@ using namespace std;
 class WindowsCollector : public Collector {
 public:
 	WindowsCollector();
-	WindowsCollector(CPUData* c, RAMData* r, DiskData* d);
-	~WindowsCollector();
+	WindowsCollector(shared_ptr<CPUData> cpu, shared_ptr<RAMData> ram, shared_ptr<DiskData> disk);
+	~WindowsCollector();	
+
+	virtual void fillModelWithData();
+
+private:
 
 	//CPU
 	int getCPUPercentageUsage();
@@ -56,10 +60,6 @@ public:
 	int getRAMSystemCodeSize();
 	int getRAMUsedBySystemDriverSize();
 
-	virtual void fillModelWithData();
-
-private:
-
 	int connectToWMINamespace();
 	void disconnectFromWMINamespace();
 	int getVtProp(VARIANT &vtProp, string class_name, string property_name);
@@ -70,8 +70,8 @@ private:
 
 	IWbemServices *pSvc;
 	IWbemLocator *pLoc;
-	CPUData* cpu_data;
-	RAMData* ram_data;
-	DiskData* disk_data;
+	shared_ptr<CPUData> cpu_data;
+	shared_ptr<RAMData> ram_data;
+	shared_ptr<DiskData> disk_data;
 
 };

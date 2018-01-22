@@ -12,11 +12,18 @@
 			
 			view.move( sx + (sw - w) / 2, sy + (sh - h) / 2, w,h, true );
 			
-			$(p#cpu_usage).text = "50%";
-			namespace Accounts 
+			$(p#cpu_usage).text = "0%";
+			namespace View 
 			{
-			  function test( val ) {
-				 $(p#test).text = val;
+			  function test( usage, name, nr_of_cores, nr_of_logical_processors, max_clock_speed, cur_clock_speed, cur_voltage ) {
+			  	$(p#cpu_usage).text = usage;
+				 $(p#cpu_name).text = name;
+				 $(p#cpu_number_of_cores).text = name;
+				 $(p#cpu_number_of_logical_processors).text = name;
+				 $(p#cpu_max_clock_speed).text = name;
+				 $(p#cpu_current_clock_speed).text = name;
+				 $(p#cpu_current_voltage).text = name;
+
 			  }
 			}
 		</script>

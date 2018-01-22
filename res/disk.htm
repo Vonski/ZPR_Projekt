@@ -15,15 +15,16 @@
 			$(p#disk_usage).text = "0%";
 			namespace Accounts 
 			{
-			  function setDiskDetails( usage, size, free_space, partitions, write_speed, read_speed, cur_queue ) {
-				 $(p#disk_usage).text = usage;
-				 $(p#disk_size).text = size;
-				 $(p#disk_free_space).text = free_space;
+			  function setDiskDetails1( usage, size, free_space, partitions, write_speed, read_speed, cur_queue ) {
+				 $(p#disk_usage).text = usage + "%";
+				 $(p#disk_size).text = size + "GB";
+				 $(p#disk_free_space).text = free_space + "GB";
 				 $(p#disk_partitions_nr).text = partitions;
-				 $(p#disk_write_speed).text = write_speed;
-				 $(p#disk_read_speed).text = read_speed;
+			  }
+			  function setDiskDetails2( write_speed, read_speed, cur_queue ) {
+				$(p#disk_write_speed).text = write_speed + "KB/s";
+				 $(p#disk_read_speed).text = read_speed + "KB/s;
 				 $(p#disk_current_queue_length).text = cur_queue;
-
 			  }
 			}
 		</script>
